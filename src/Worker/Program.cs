@@ -12,19 +12,33 @@ namespace Worker
 {
     public class Program
     {
-	static string[] arrayZboruri = new string[] 
+	static string[] arrayZboruri1 = new string[] 
 		{"Londra, BritishAirlines - 2 ore, fara escala, 90 EURO",
 		 "Paris, AirFrance - 3 ore, fara escala, 100 EURO",
                  "Instanbul, TurkishAirlines - 1:30, fara escala, 80 EURO",
                  "Madrid, BlueAir - 4 ore, escala Paris, 220 EURO",
-                 "Barcelona, WizzAir - 3 ore, fara escala, 200 EURO",
-                 "Londra, BlueAir - 2 ore, fara escala, 95 EURO",
-                 "Londra, WizzAir - 4 ore, escala Paris, 120 EURO",
-                 "Praga, Tarom - 1:30, fara escala, 90 EURO",
-                 "Viena, BlueAir - 2 ore, fara escala, 100 EURO",
-                 "Venetia, AlItalia - 3 ore, fara escala, 120 EURO"};
+                 "Barcelona, WizzAir - 3 ore, fara escala, 200 EURO"};
 
-	 static string[] copyArrayZboruri = arrayZboruri;
+	 static string[] arrayZboruri2 = new string[] 
+		{"Roma, BlueAir - 3 ore, fara escala, 125 EURO",
+                 "Milano, RyanAir - 3 ore, escala Paris, 220 EURO",
+                 "New Delhi, RyanAir - 4:30, fara escala, 490 EURO",
+                 "Bologna, BlueAir - 2 ore, escala Paris, 300 EURO",
+                 "Venetia, AlItalia - 3 ore, fara escala, 420 EURO"};
+
+	static string[] arrayZboruri3 = new string[] 
+		{"Berlin, BritishAirlines - 4 ore, fara escala, 490 EURO",
+		 "Atena, AirFrance - 3 ore, fara escala, 400 EURO",
+                 "Bruxelles, Tarom - 2:30, fara escala, 280 EURO",
+                 "Sicilia, BlueAir - 4 ore, escala Madrid, 420 EURO",
+                 "Budapesta, WizzAir - 2 ore, fara escala, 100 EURO"};
+
+	static string[] arrayZboruri4 = new string[] 
+		{"Dublin, RyanAir - 4 ore, fara escala, 490 EURO",
+		 "Paris, AirFrance - 3 ore, fara escala, 250 EURO",
+                 "Barcelona, RyanAir - 1:30, fara escala, 180 EURO",
+                 "Atena, Tarom - 3 ore, escala Paris, 420 EURO",
+                 "Creta, WizzAir - 2 ore, fara escala, 80 EURO"};
 
         public static int Main(string[] args)
         {
@@ -146,47 +160,24 @@ namespace Worker
                 .First(a => a.AddressFamily == AddressFamily.InterNetwork)
                 .ToString();
 
-	    private static string[] getNewArr(array, index) {
-			int i, c = 0;
-			string[] newArr;
-
-			for(i = 0; i < array.Length; i++) {
-				if(i != index) {
-					newArr[c] = array[i];
-					c++;
-				}
-			}
-
-			return newArr;
-		}
-
         private static void UpdateVote(NpgsqlConnection connection, string id, string plecare, string intoarcere)
         {
             var command = connection.CreateCommand();
 	        Random ran = new Random();
             string[] randomZbor = new string[4];
-			string[] newArr;
-            int index1 = ran.Next(0, arrayZboruri.Length - 1);
-            randomZbor[0] = arrayZboruri[index1];
-            arrayZboruri = arrayZboruri.Where((source, index) => index != index1).ToArray();
+            int index1 = ran.Next(0, arrayZboruri1.Length - 1);
+            randomZbor[0] = arrayZboruri1[index1];
 
-	    int index2 = ran.Next(0, arrayZboruri.Length - 1);
-		newArr = getNewArr(arrayZboruri, index1);
-	   // arrayZboruri = arrayZboruri.Where((source, index) => index != index2).ToArray();
-	    randomZbor[1] = arrayZboruri[index2];
+	    int index2 = ran.Next(0, arrayZboruri2.Length - 1);
+	    randomZbor[1] = arrayZboruri2[index2];
                            
-	    int index3 = ran.Next(0, arrayZboruri.Length - 1);
-		newArr = getNewArr(newArr, index2);
-       // arrayZboruri = arrayZboruri.Where((source, index) => index != index3).ToArray();
-        randomZbor[2] = arrayZboruri[index3];
+	    int index3 = ran.Next(0, arrayZboruri3.Length - 1);
+        randomZbor[2] = arrayZboruri3[index3];
            
 
-	    int index4 = ran.Next(0, arrayZboruri.Length - 1);
-		newArr = getNewArr(newArr, index3);
-       // arrayZboruri = arrayZboruri.Where((source, index) => index != index4).ToArray();
-        randomZbor[3] = arrayZboruri[index4];
+	    int index4 = ran.Next(0, arrayZboruri4.Length - 1);
+        randomZbor[3] = arrayZboruri4[index4];
                          
-	   // arrayZboruri = copyArrayZboruri;
             try
             {
                int i;
