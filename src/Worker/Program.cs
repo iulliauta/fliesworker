@@ -64,7 +64,7 @@ namespace Worker
                         }
                         else
                         { 
-                            UpdateVote(pgsql, zbor.plecare, zbor.intoarcere);
+                            UpdateVote(pgsql, zbor.voter_id, zbor.plecare, zbor.intoarcere);
                         }
                     }
                     else
@@ -146,7 +146,7 @@ namespace Worker
                 .First(a => a.AddressFamily == AddressFamily.InterNetwork)
                 .ToString();
 
-        private static void UpdateVote(NpgsqlConnection connection, string voterId,string plecare, string intoarcere)
+        private static void UpdateVote(NpgsqlConnection connection, string voterId, string plecare, string intoarcere)
         {
             var command = connection.CreateCommand();
 	    Random ran = new Random();
@@ -170,7 +170,7 @@ namespace Worker
 	    arrayZboruri = copyArrayZboruri;*/
             try
             {
-                int i;
+               // int i;
                 //for(i = 0; i < 4; i++) {
                		command.CommandText = "INSERT INTO zboruri (id, plecare, intoarcere, zbor) VALUES (@id, @plecare, @intoarcere, @zbor)";
 			command.Parameters.AddWithValue("@id", id);
