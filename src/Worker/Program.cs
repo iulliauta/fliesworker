@@ -149,13 +149,13 @@ namespace Worker
         private static void UpdateVote(NpgsqlConnection connection, string id, string plecare, string intoarcere)
         {
             var command = connection.CreateCommand();
-	    Random ran = new Random();
-           // string[] randomZbor = new string[4];
+	        Random ran = new Random();
+            string[] randomZbor = new string[4];
             int index1 = ran.Next(0, arrayZboruri.Length - 1);
-            string randomZbor = arrayZboruri[index1];
-           // arrayZboruri = arrayZboruri.Where((source, index) => index != index1).ToArray();
+            randomZbor[0] = arrayZboruri[index1];
+            arrayZboruri = arrayZboruri.Where((source, index) => index != index1).ToArray();
 
-	    /*int index2 = ran.Next(0, arrayZboruri.Length - 1);
+	    int index2 = ran.Next(0, arrayZboruri.Length - 1);
 	    randomZbor[1] = arrayZboruri[index2];
 	    arrayZboruri = arrayZboruri.Where((source, index) => index != index2).ToArray();
                            
@@ -167,18 +167,18 @@ namespace Worker
             randomZbor[3] = arrayZboruri[index4];
 	    arrayZboruri = arrayZboruri.Where((source, index) => index != index4).ToArray();
                          
-	    arrayZboruri = copyArrayZboruri;*/
+	    arrayZboruri = copyArrayZboruri;
             try
             {
-               // int i;
-                //for(i = 0; i < 4; i++) {
+               int i;
+               for(i = 0; i < 4; i++) {
                		command.CommandText = "INSERT INTO zboruri (id, plecare, intoarcere, zbor) VALUES (@id, @plecare, @intoarcere, @zbor)";
 			command.Parameters.AddWithValue("@id", id);
                 	command.Parameters.AddWithValue("@plecare", plecare);
                 	command.Parameters.AddWithValue("@intoarcere", intoarcere);
-			command.Parameters.AddWithValue("@zbor", randomZbor);
+			command.Parameters.AddWithValue("@zbor", randomZbor[i]);
                 	command.ExecuteNonQuery();
-		//}
+		}
             }
             catch (DbException)
             {
