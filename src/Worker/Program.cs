@@ -24,7 +24,7 @@ namespace Worker
                  "Viena, BlueAir - 2 ore, fara escala, 100 EURO",
                  "Venetia, AlItalia - 3 ore, fara escala, 120 EURO"};
 
-	//public string[] copyArrayZboruri = arrayZboruri;
+	 static string[] copyArrayZboruri = arrayZboruri;
 
         public static int Main(string[] args)
         {
