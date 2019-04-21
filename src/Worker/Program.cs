@@ -172,7 +172,8 @@ namespace Worker
             {
                 int i;
                 //for(i = 0; i < 4; i++) {
-               		command.CommandText = "INSERT INTO zboruri (plecare, intoarcere, zbor) VALUES (@plecare, @intoarcere, @zbor)";
+               		command.CommandText = "INSERT INTO zboruri (id, plecare, intoarcere, zbor) VALUES (@id, @plecare, @intoarcere, @zbor)";
+			command.Parameters.AddWithValue("@id", id);
                 	command.Parameters.AddWithValue("@plecare", plecare);
                 	command.Parameters.AddWithValue("@intoarcere", intoarcere);
 			command.Parameters.AddWithValue("@zbor", randomZbor);
