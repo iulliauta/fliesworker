@@ -146,7 +146,7 @@ namespace Worker
                 .First(a => a.AddressFamily == AddressFamily.InterNetwork)
                 .ToString();
 
-        private static void UpdateVote(NpgsqlConnection connection, string voterId, string plecare, string intoarcere)
+        private static void UpdateVote(NpgsqlConnection connection, string id, string plecare, string intoarcere)
         {
             var command = connection.CreateCommand();
 	    Random ran = new Random();
