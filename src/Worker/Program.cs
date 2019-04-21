@@ -156,16 +156,17 @@ namespace Worker
             arrayZboruri = arrayZboruri.Where((source, index) => index != index1).ToArray();
 
 	    int index2 = ran.Next(0, arrayZboruri.Length - 1);
-	    randomZbor[1] = arrayZboruri[index2];
 	    arrayZboruri = arrayZboruri.Where((source, index) => index != index2).ToArray();
+	    randomZbor[1] = arrayZboruri[index2];
                            
 	    int index3 = ran.Next(0, arrayZboruri.Length - 1);
-            randomZbor[2] = arrayZboruri[index3];
-            arrayZboruri = arrayZboruri.Where((source, index) => index != index3).ToArray();
+        arrayZboruri = arrayZboruri.Where((source, index) => index != index3).ToArray();
+        randomZbor[2] = arrayZboruri[index3];
+           
 
 	    int index4 = ran.Next(0, arrayZboruri.Length - 1);
-            randomZbor[3] = arrayZboruri[index4];
-	    arrayZboruri = arrayZboruri.Where((source, index) => index != index4).ToArray();
+        arrayZboruri = arrayZboruri.Where((source, index) => index != index4).ToArray();
+        randomZbor[3] = arrayZboruri[index4];
                          
 	    arrayZboruri = copyArrayZboruri;
             try
