@@ -12,7 +12,7 @@ namespace Worker
 {
     public class Program
     {
-	public string[] arrayZboruri = new string[] 
+	static string[] arrayZboruri = new string[] 
 		{"Londra, BritishAirlines - 2 ore, fara escala, 90 EURO",
 		 "Paris, AirFrance - 3 ore, fara escala, 100 EURO",
                  "Instanbul, TurkishAirlines - 1:30, fara escala, 80 EURO",
@@ -24,7 +24,7 @@ namespace Worker
                  "Viena, BlueAir - 2 ore, fara escala, 100 EURO",
                  "Venetia, AlItalia - 3 ore, fara escala, 120 EURO"};
 
-	public string[] copyArrayZboruri = arrayZboruri;
+	//public string[] copyArrayZboruri = arrayZboruri;
 
         public static int Main(string[] args)
         {
@@ -150,12 +150,12 @@ namespace Worker
         {
             var command = connection.CreateCommand();
 	    Random ran = new Random();
-            string[] randomZbor = new string[4];
+           // string[] randomZbor = new string[4];
             int index1 = ran.Next(0, arrayZboruri.Length - 1);
-            randomZbor[0] = arrayZboruri[index1];
-            arrayZboruri = arrayZboruri.Where((source, index) => index != index1).ToArray();
+            string randomZbor = arrayZboruri[index1];
+           // arrayZboruri = arrayZboruri.Where((source, index) => index != index1).ToArray();
 
-	    int index2 = ran.Next(0, arrayZboruri.Length - 1);
+	    /*int index2 = ran.Next(0, arrayZboruri.Length - 1);
 	    randomZbor[1] = arrayZboruri[index2];
 	    arrayZboruri = arrayZboruri.Where((source, index) => index != index2).ToArray();
                            
@@ -167,17 +167,17 @@ namespace Worker
             randomZbor[3] = arrayZboruri[index4];
 	    arrayZboruri = arrayZboruri.Where((source, index) => index != index4).ToArray();
                          
-	    arrayZboruri = copyArrayZboruri;
+	    arrayZboruri = copyArrayZboruri;*/
             try
             {
                 int i;
-                for(i = 0; i < 4; i++) {
+                //for(i = 0; i < 4; i++) {
                		command.CommandText = "INSERT INTO zboruri (plecare, intoarcere, zbor) VALUES (@plecare, @intoarcere, @zbor)";
                 	command.Parameters.AddWithValue("@plecare", plecare);
                 	command.Parameters.AddWithValue("@intoarcere", intoarcere);
-			command.Parameters.AddWithValue("@zbor", randomZbor[i]);
+			command.Parameters.AddWithValue("@zbor", randomZbor);
                 	command.ExecuteNonQuery();
-		}
+		//}
             }
             catch (DbException)
             {
